@@ -3,6 +3,7 @@
 > An intelligent, local-first infrastructure control loop that monitors Linux systems, diagnoses runtime anomalies, and executes multi-step remediation workflows autonomously, with **zero cloud dependency** and **rigid security guardrails**.
 
 ---
+<img width="1914" height="1004" alt="Screenshot From 2026-11-12 12-34-59" src="https://github.com/user-attachments/assets/c70681fb-89e4-4c4c-880b-10b324d7cc4e" />
 
 ## 🌟 Overview
 
@@ -21,6 +22,7 @@ Traditional system administration relies on fragile static scripts or manual int
             ↓
 [ Sandboxed OS Actuation & Verification ]
 ```
+<img width="1914" height="1004" alt="Screenshot From 2026-11-12 12-34-50" src="https://github.com/user-attachments/assets/46630ba3-f079-41b5-b3ce-798cde07e340" />
 
 ---
 
@@ -38,6 +40,7 @@ The project is organized into a modular, security-focused architecture:
 | `inject.py` | Chaos-engineering module for testing resilience by deliberately introducing configuration faults, permission locks, and poisoned package repositories. |
 
 ---
+<img width="1914" height="1004" alt="Screenshot From 2026-11-12 12-33-43" src="https://github.com/user-attachments/assets/b71bd8b6-f6b8-42cd-a69b-41f21c22c5a3" />
 
 ## ⚙️ Key Technical Highlights
 
