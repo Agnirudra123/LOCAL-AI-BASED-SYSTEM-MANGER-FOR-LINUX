@@ -1,12 +1,55 @@
-# LOCAL-AI-BASED-SYSTEM-MANGER-FOR-LINUX
+# 🛡️ selfheal: Local AI-Based System Manager for Linux
 
-🛡️ Autonomous Linux Self-Healing Agent (selfheal)An intelligent, local-first infrastructure control loop designed to monitor Linux operating systems, diagnose runtime anomalies, and execute multi-step remediation workflows autonomously—with zero cloud dependency and rigid security guardrails.🌟 Core Architecture & OverviewTraditional system administration relies on fragile static scripts or manual intervention during outages. selfheal bridges the gap between AI reasoning and deterministic systems engineering by treating the local LLM as a problem-solving agent operating within a secure feedback loop.Plaintext[ System Telemetry & Logs ] 
-          ↓
+> An intelligent, local-first infrastructure control loop that monitors Linux systems, diagnoses runtime anomalies, and executes multi-step remediation workflows autonomously, with **zero cloud dependency** and **rigid security guardrails**.
+
+---
+
+## 🌟 Overview
+
+Traditional system administration relies on fragile static scripts or manual intervention during outages. **selfheal** bridges the gap between AI reasoning and deterministic systems engineering by treating a local LLM as a problem-solving agent operating inside a secure feedback loop.
+
+### Architecture
+
+```text
+[ System Telemetry & Logs ]
+            ↓
 [ Evidence Packaging (diagnose.py) ]
-          ↓
+            ↓
 [ Multi-Step ReAct Reasoning (agent.py + Ollama Qwen 2.5) ]
-          ↓
+            ↓
 [ Deterministic Security Gatekeeper (policy.py) ]
-          ↓
+            ↓
 [ Sandboxed OS Actuation & Verification ]
-📂 Codebase Module BreakdownYour project is organized into a modular, highly secure architecture:ModulePurpose & Functionalityagent.pyImplements the Multi-Step ReAct (Reason + Act) Loop. Guides the local model through iterative diagnostic investigations (using read-only commands) before committing to a structured fix plan.policy.pyThe Deterministic Security Gatekeeper. Intercepts every proposed remediation command, enforcing strict path whitelists, argument validations, and blocking dangerous patterns (e.g., wildcards, privilege escalation, and arbitrary shell piping).llm.pyManages communication with Ollama, handling context window budgeting to ensure long diagnostic investigation traces never overflow the model's memory limits.diagnose.pyPackages live system telemetry, health probes, and journalctl logs into structured Evidence Packets for the LLM to analyze.health.pyContinuous probe monitor that tracks service states, socket bindings, and system metrics.inject.pyChaos engineering module used for testing system resilience by deliberately introducing configuration faults, permission locks, and poisoned package repositories.⚙️ Key Technical Highlights100% Local Execution: Powered entirely offline using open-weight models (selfheal-qwen / llama3.2:3b) via Ollama, ensuring absolute data privacy and zero cloud API latency.Bounded Autonomy: The LLM never writes raw shell commands directly to the terminal. It outputs structured intent, which is translated and validated by rigid Python security checks.Closed-Loop Verification: The agent evaluates the output of each investigative command, allowing it to adapt dynamically to cascading system errors in real time.
+```
+
+---
+
+## 📂 Codebase Module Breakdown
+
+The project is organized into a modular, security-focused architecture:
+
+| Module | Purpose & Functionality |
+|--------|-------------------------|
+| `agent.py` | Implements the multi-step **ReAct (Reason + Act)** loop. Guides the local model through iterative diagnostic investigations (using read-only commands) before committing to a structured fix plan. |
+| `policy.py` | The **deterministic security gatekeeper**. Intercepts every proposed remediation command, enforcing strict path whitelists, argument validation, and blocking dangerous patterns (wildcards, privilege escalation, arbitrary shell piping). |
+| `llm.py` | Manages communication with Ollama and handles context-window budgeting so long investigation traces never overflow the model's memory limits. |
+| `diagnose.py` | Packages live system telemetry, health probes, and `journalctl` logs into structured **Evidence Packets** for the LLM to analyze. |
+| `health.py` | Continuous probe monitor that tracks service states, socket bindings, and system metrics. |
+| `inject.py` | Chaos-engineering module for testing resilience by deliberately introducing configuration faults, permission locks, and poisoned package repositories. |
+
+---
+
+## ⚙️ Key Technical Highlights
+
+- **🔒 100% Local Execution:** Runs entirely offline on open-weight models (`selfheal-qwen` / `llama3.2:3b`) via Ollama, giving full data privacy and zero cloud API latency.
+- **🚧 Bounded Autonomy:** The LLM never writes raw shell commands to the terminal. It outputs *structured intent*, which is translated and validated by rigid Python security checks.
+- **🔁 Closed-Loop Verification:** The agent evaluates the output of each investigative command, letting it adapt dynamically to cascading system errors in real time.
+
+---
+
+## 🧰 Tech Stack
+
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+![Ollama](https://img.shields.io/badge/Ollama-000000?logo=ollama&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black)
+![systemd](https://img.shields.io/badge/systemd-journalctl-lightgrey)
